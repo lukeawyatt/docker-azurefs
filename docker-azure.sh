@@ -13,7 +13,8 @@ echo;echo;
 echo "Populating variables from supplied arguments..."
 POSITIONAL=()
 while [[ $# -gt 0 ]]
-do
+
+
 key="$1"
 
 case $key in
@@ -60,7 +61,7 @@ echo;echo;
 
 
 echo "Mounting Azure File Storage..."
-sudo mount -t cifs \
+mount -t cifs \
 	//myaccountname.file.core.windows.net/$SHARENAME \
 	/mount \
 	-o vers=$PROTOCOL_VERSION,username=$USERNAME,password=$PASSWORD,dir_mode=$DIR_PERMISSIONS,file_mode=$FILE_PERMISSIONS

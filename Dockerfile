@@ -13,6 +13,7 @@ RUN mkdir -p /mount
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY ./docker-azure.sh /usr/src/app/docker-azure.sh
+RUN chmod +x /usr/src/app/docker-azure.sh
 
 ENTRYPOINT ["/usr/src/app/docker-azure.sh"]
 CMD ["--help"]

@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "Initializing default variables..."
-STORAGEACCOUNT="SET"  # "myaccountname"
-ACCESSKEY="SET"  # "StorageAccountKeyEndingIn=="
-SHARENAME="SET" # "mysharename"
+STORAGEACCOUNT="SET"
+ACCESSKEY="SET"
+SHARENAME="SET"
 PROTOCOL_VERSION="3.0"
 DIR_PERMISSIONS=0777
 FILE_PERMISSIONS=0777
@@ -21,6 +21,7 @@ case $key in
 	echo "---------------------------"
 	echo "Syntax docker-azure.sh -u <azure account name> -p <azure storage account key> -s <azure file share name>"
 	echo;
+	exit 0
     shift # past argument
     shift # past value
     ;;

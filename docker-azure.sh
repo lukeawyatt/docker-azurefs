@@ -13,10 +13,8 @@ echo;echo;
 echo "Populating variables from supplied arguments..."
 POSITIONAL=()
 while [[ $# -gt 0 ]]
-
-
+do
 key="$1"
-
 case $key in
 	-h|--help)
     echo "Azure File Storage Mounting"

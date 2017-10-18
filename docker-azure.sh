@@ -11,7 +11,6 @@ echo;echo;
 
 
 echo "Populating variables from supplied arguments..."
-POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -42,7 +41,6 @@ case $key in
     ;;
 esac
 done
-set -- "${POSITIONAL[@]}" # restore positional parameters
 
 echo STORAGEACCOUNT  = "${STORAGEACCOUNT}"
 echo ACCESSKEY  = "${ACCESSKEY}"
@@ -63,5 +61,5 @@ echo "Mounting Azure File Storage..."
 mount -t cifs \
 	//$STORAGEACCOUNT.file.core.windows.net/$SHARENAME \
 	/mount \
-	-o vers=$PROTOCOL_VERSION,username=$STORAGEACCOUNT,password=$ACCESSKEY,dir_mode=$DIR_PERMISSIONS,file_mode=$FILE_PERMISSIONS
+	-o vers=$PROTOCOL_VERSION,username=$STORAGEACCOUNT,password=$ACCESSKEY,dir_mode=$DIR_PERMISSIONS,file_mode=$FILE_PERMISSIONS,sec=ntlmssp
 echo;echo;

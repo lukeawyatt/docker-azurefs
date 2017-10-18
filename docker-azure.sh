@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "Initializing default variables..."
-USERNAME="SET"  # "myaccountname"
-PASSWORD="SET"  # "StorageAccountKeyEndingIn=="
+STORAGEACCOUNT="SET"  # "myaccountname"
+ACCESSKEY="SET"  # "StorageAccountKeyEndingIn=="
 SHARENAME="SET" # "mysharename"
 PROTOCOL_VERSION="3.0"
 DIR_PERMISSIONS=0777
@@ -26,17 +26,17 @@ case $key in
     shift # past argument
     shift # past value
     ;;
-    -u|--username)
-    USERNAME="$2"
+    -a|--storage_account)
+    STORAGEACCOUNT="$2"
     shift # past argument
     shift # past value
     ;;
-    -p|--password)
-    PASSWORD="$2"
+    -k|--access_key)
+    ACCESSKEY="$2"
     shift # past argument
     shift # past value
     ;;
-    -s|--sharename)
+    -s|--share_name)
     SHARENAME="$2"
     shift # past argument
     shift # past value
@@ -45,14 +45,14 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-echo USERNAME  = "${USERNAME}"
-echo PASSWORD  = "${PASSWORD}"
+echo STORAGEACCOUNT  = "${STORAGEACCOUNT}"
+echo ACCESSKEY  = "${ACCESSKEY}"
 echo SHARENAME = "${SHARENAME}"
 echo;echo;
 
 
 echo "Bail out if any of the required arguments were skipped..."
-if [ "$USERNAME" == "SET" ] || [ "$PASSWORD" == "SET" ] || [ "$SHARENAME" == "SET" ] ; then
+if [ "$STORAGEACCOUNT" == "SET" ] || [ "$ACCESSKEY" == "SET" ] || [ "$SHARENAME" == "SET" ] ; then
 	echo "One or more parameters were not set properly..."
 	echo "Exiting script..."
 	exit 1
@@ -62,7 +62,7 @@ echo;echo;
 
 echo "Mounting Azure File Storage..."
 mount -t cifs \
-	//myaccountname.file.core.windows.net/$SHARENAME \
+	//$STORAGEACCOUNT.file.core.windows.net/$SHARENAME \
 	/mount \
-	-o vers=$PROTOCOL_VERSION,username=$USERNAME,password=$PASSWORD,dir_mode=$DIR_PERMISSIONS,file_mode=$FILE_PERMISSIONS
+	-o vers=$PROTOCOL_VERSION,username=$STORAGEACCOUNT,password=$ACCESSKEY,dir_mode=$DIR_PERMISSIONS,file_mode=$FILE_PERMISSIONS
 echo;echo;

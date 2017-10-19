@@ -10,7 +10,6 @@ RUN apk add --no-cache samba-common
 RUN apk add --no-cache cifs-utils
 
 # STAGE ENVIRONMENT
-RUN rm -rf /usr/src/app
 RUN mkdir -p /mount
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

@@ -5,6 +5,8 @@ LABEL version="l.0.0"
 LABEL license="MIT"
 
 # INSTALL APP DEPENDENCIES
+RUN apk add --no-cache samba-client
+RUN apk add --no-cache samba-common
 RUN apk add --no-cache cifs-utils
 
 # STAGE ENVIRONMENT
